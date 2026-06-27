@@ -17,7 +17,7 @@ let scores = calculateScores();
 
 function renderMiniLeaderboard(){
   const el = $('leaderboardMini'); if(!el) return;
-  el.innerHTML = scores.map((s,i)=>`<div class="leader-row"><div><span class="rank">${medal(i)}</span> <strong>${s.player}</strong><div class="small">Groups ${s.groupPoints} · Bonus ${s.bonusPoints}</div></div><div class="points">${s.total} pts</div></div>`).join('');
+  el.innerHTML = scores.map((s,i)=>`<div class="leader-row ${i===0?'top-leader':''}"><div><span class="rank">${medal(i)}</span> <strong>${s.player}</strong>${i===0?'<span class="leader-chip">Leader</span>':''}<div class="small">Groups ${s.groupPoints} · Bonus ${s.bonusPoints}</div></div><div class="points">${s.total} pts</div></div>`).join('');
   const leader = $('dashboardLeader'); if(leader) leader.textContent = scores.length ? `${scores[0].player} — ${scores[0].total} pts` : 'No scores yet';
 }
 function renderFullLeaderboard(){
@@ -136,7 +136,7 @@ function renderTournamentTimeline(){
   let progressPct = Math.round(((doneCount + (active?.state === 'active' ? (active.code === 'GS' ? gsFraction : 0.35) : 0)) / stages.length) * 100);
   progressPct = Math.max(4, Math.min(progressPct, 100));
   if(fill) fill.style.width = `${progressPct}%`;
-  if(label) label.textContent = `${active.name}: ${active.detail}. Progress is based on tournament stage, not pool points.`;
+  if(label) label.textContent = `${active.name}: ${active.detail}. Stage progress, not pool points.`;
   if(timeline){
     timeline.innerHTML = stageStates.map(s => `<div class="stage-step ${s.state}"><span class="stage-code">${s.code}</span><div><div class="stage-title">${s.name}</div><div class="stage-detail">${s.detail}</div></div></div>`).join('');
   }
