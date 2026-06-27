@@ -29,11 +29,17 @@
   </nav>
 
   <main class="container">
-    <section class="hero-grid">
-      <article class="card hero-card">
-        <p class="eyebrow">Current Leader</p>
-        <h2 id="dashboardLeader">Calculating...</h2>
-        <p class="muted">Scores are calculated from entered official group results.</p>
+    <section class="hero-grid dashboard-hero">
+      <article class="card hero-card leaderboard-card">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Leaderboard</p>
+            <h2>Current Standings</h2>
+          </div>
+          <a href="leaderboard.html">View all</a>
+        </div>
+        <p class="muted compact-note">Scores are calculated from entered official group results.</p>
+        <div id="leaderboardMini"></div>
       </article>
       <article class="card progress-card">
         <p class="eyebrow">Tournament Progress</p>
@@ -48,22 +54,12 @@
       </article>
     </section>
 
-    <section class="grid two">
-      <article class="card">
-        <div class="section-title">
-          <h2>Leaderboard</h2>
-          <a href="leaderboard.html">View all</a>
-        </div>
-        <div id="leaderboardMini"></div>
-      </article>
-
+    <section class="grid two dashboard-main">
       <article class="card accent">
         <h2>Today’s Impact</h2>
         <div id="impactList"></div>
       </article>
-    </section>
 
-    <section class="grid two">
       <article class="card">
         <h2>Upcoming / Key Matches</h2>
         <div id="matchCards"></div>
