@@ -1,1 +1,81 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>MauMatch</title><link rel="stylesheet" href="css/styles.css"/></head><body><header class="topbar"><div><h1>🏆 MauMatch</h1><p>Mau's Family World Cup Pool 2026 · Winner takes all · $120 prize pool</p></div><nav><a class="active" href="index.html">Dashboard</a><a href="leaderboard.html">Leaderboard</a><a href="groups.html">Groups</a><a href="players.html">Players</a><a href="matches.html">Matches</a><a href="admin.html">Admin</a></nav></header><main class="layout"><section class="hero card"><div><span class="eyebrow">V1 MVP</span><h2>Family World Cup Pool Dashboard</h2><p>Track points, group picks, tournament picks, upcoming matches, and who is impacted by each result.</p></div><div class="pot"><span>Prize Pool</span><strong>$120</strong><small>4 players · $30 each · all paid</small></div></section><section class="grid two"><div class="card"><h3>Leaderboard</h3><div id="leaderboard-mini"></div></div><div class="card"><h3>Today's / Upcoming Impact</h3><div id="impact-list"></div></div></section><section class="grid two"><div class="card"><h3>Upcoming Matches</h3><div id="upcoming-matches"></div></div><div class="card"><h3>Pool Story</h3><div id="pool-story"></div></div></section><p class="footer-note">V1 uses manual official results stored in the site files. V2 backlog includes automatic scores, insights, and charts.</p></main><script src="js/data.js"></script><script src="js/scoring.js"></script><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MauMatch | Family World Cup Pool</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Family World Cup Pool 2026</p>
+      <h1>🏆 MauMatch</h1>
+    </div>
+    <div class="pot-card">
+      <span>Prize Pool</span>
+      <strong>$120</strong>
+      <small>Winner takes all</small>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a class="active" href="index.html">Dashboard</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="groups.html">Groups</a>
+    <a href="players.html">Players</a>
+    <a href="matches.html">Matches</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <main class="container">
+    <section class="hero-grid">
+      <article class="card hero-card">
+        <p class="eyebrow">Current Leader</p>
+        <h2 id="dashboardLeader">Calculating...</h2>
+        <p class="muted">Scores are calculated from entered official group results.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Tournament Progress</p>
+        <div class="progress"><span style="width:42%"></span></div>
+        <p class="muted">Group stage data loaded. Knockout scoring comes next.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Players Paid</p>
+        <h2>4 / 4 ✅</h2>
+        <p class="muted">Mauricio, Laura, Lisa, Natalia</p>
+      </article>
+    </section>
+
+    <section class="grid two">
+      <article class="card">
+        <div class="section-title">
+          <h2>Leaderboard</h2>
+          <a href="leaderboard.html">View all</a>
+        </div>
+        <div id="leaderboardMini"></div>
+      </article>
+
+      <article class="card accent">
+        <h2>Today’s Impact</h2>
+        <div id="impactList"></div>
+      </article>
+    </section>
+
+    <section class="grid two">
+      <article class="card">
+        <h2>Upcoming / Key Matches</h2>
+        <div id="matchCards"></div>
+      </article>
+      <article class="card">
+        <h2>Tournament Picks</h2>
+        <div id="tournamentPicksMini"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
