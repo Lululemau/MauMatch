@@ -95,9 +95,56 @@ function exportDataJS(){
   const a = document.createElement('a');
   a.href = url; a.download = 'data.js'; a.click(); URL.revokeObjectURL(url);
 }
+
+function renderTournamentTimeline(){
+  const timeline = $('stageTimeline');
+  const fill = $('progressFill');
+  const label = $('progressLabel');
+  if(!timeline && !fill && !label) return;
+  const groups = Object.values(POOL.officialGroups || {});
+  const completedGroups = groups.filter(g => g && g.winner && g.runnerUp && g.winner !== 'TBD' && g.runnerUp !== 'TBD').length;
+  const allGroupsComplete = completedGroups === 12;
+  const now = new Date();
+  const stages = [
+    { code:'GS', name:'Group Stage', start:'2026-06-11', end:'2026-06-27', detail: allGroupsComplete ? 'Completed' : `${completedGroups}/12 groups final` },
+    { code:'R32', name:'Round of 32', start:'2026-06-28', end:'2026-07-03', detail:'Starts Jun 28' },
+    { code:'R16', name:'Round of 16', start:'2026-07-04', end:'2026-07-07', detail:'Starts Jul 4' },
+    { code:'QF', name:'Quarterfinals', start:'2026-07-09', end:'2026-07-11', detail:'Starts Jul 9' },
+    { code:'SF', name:'Semifinals', start:'2026-07-14', end:'2026-07-15', detail:'Starts Jul 14' },
+    { code:'F', name:'Final', start:'2026-07-19', end:'2026-07-19', detail:'Jul 19' }
+  ];
+  function dateOnly(s){ return new Date(`${s}T00:00:00`); }
+  function endOf(s){ return new Date(`${s}T23:59:59`); }
+  const stageStates = stages.map((s, idx) => {
+    let state = 'future';
+    let detail = s.detail;
+    if(s.code === 'GS'){
+      if(allGroupsComplete) { state = 'done'; detail = 'Completed'; }
+      else { state = 'active'; detail = `${completedGroups}/12 groups final`; }
+    } else if(now < dateOnly(s.start)) {
+      state = 'future';
+    } else if(now > endOf(s.end)) {
+      state = 'done'; detail = 'Completed';
+    } else {
+      state = 'active'; detail = 'In progress';
+    }
+    return {...s, state, detail};
+  });
+  const active = stageStates.find(s => s.state === 'active') || stageStates.find(s => s.state === 'future') || stageStates[stageStates.length-1];
+  const doneCount = stageStates.filter(s => s.state === 'done').length;
+  const gsFraction = Math.min(completedGroups / 12, 1);
+  let progressPct = Math.round(((doneCount + (active?.state === 'active' ? (active.code === 'GS' ? gsFraction : 0.35) : 0)) / stages.length) * 100);
+  progressPct = Math.max(4, Math.min(progressPct, 100));
+  if(fill) fill.style.width = `${progressPct}%`;
+  if(label) label.textContent = `${active.name}: ${active.detail}. Progress is based on tournament stage, not pool points.`;
+  if(timeline){
+    timeline.innerHTML = stageStates.map(s => `<div class="stage-step ${s.state}"><span class="stage-code">${s.code}</span><div><div class="stage-title">${s.name}</div><div class="stage-detail">${s.detail}</div></div></div>`).join('');
+  }
+}
+
 function renderAll(){
   try{
-    renderMiniLeaderboard(); renderFullLeaderboard(); renderImpact(); renderMatches(); renderTournamentPicks(); renderGroups(); renderPlayers(); renderAdmin();
+    renderMiniLeaderboard(); renderFullLeaderboard(); renderImpact(); renderMatches(); renderTournamentPicks(); renderGroups(); renderPlayers(); renderAdmin(); renderTournamentTimeline();
   } catch(err){
     console.error('MauMatch render error:', err);
     const leader = $('dashboardLeader'); if(leader) leader.textContent = 'Data error — reset local changes in Admin';
