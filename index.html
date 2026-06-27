@@ -28,45 +28,66 @@
     <a href="admin.html">Admin</a>
   </nav>
 
-  <main class="container">
-    <section class="hero-grid dashboard-hero">
-      <article class="card hero-card leaderboard-card">
-        <div class="section-title">
+  <main class="container dashboard-shell">
+    <section class="dashboard-grid">
+      <article class="card dashboard-leaderboard">
+        <div class="section-title compact-title">
           <div>
-            <p class="eyebrow">Leaderboard</p>
-            <h2>Current Standings</h2>
+            <p class="eyebrow">Pool Standings</p>
+            <h2>Leaderboard</h2>
           </div>
           <a href="leaderboard.html">View all</a>
         </div>
-        <p class="muted compact-note">Scores are calculated from entered official group results.</p>
         <div id="leaderboardMini"></div>
       </article>
+
       <article class="card progress-card">
         <p class="eyebrow">Tournament Progress</p>
-        <div class="progress"><span id="progressFill" style="width:0%"></span></div>
-        <p id="progressLabel" class="muted">Loading tournament timeline...</p>
-        <div id="stageTimeline" class="stage-timeline" aria-label="Tournament stage timeline"></div>
-      </article>
-      <article class="card">
-        <p class="eyebrow">Players Paid</p>
-        <h2>4 / 4 ✅</h2>
-        <p class="muted">Mauricio, Laura, Lisa, Natalia</p>
-      </article>
-    </section>
-
-    <section class="grid two dashboard-main">
-      <article class="card accent">
-        <h2>Today’s Impact</h2>
-        <div id="impactList"></div>
+        <div id="tournamentProgressSummary"></div>
       </article>
 
-      <article class="card">
-        <h2>Upcoming / Key Matches</h2>
-        <div id="matchCards"></div>
+      <article class="card pool-info-card">
+        <p class="eyebrow">Pool Info</p>
+        <div class="pool-info-grid">
+          <div><span>Players</span><strong>4</strong></div>
+          <div><span>Paid</span><strong>4 / 4 ✅</strong></div>
+          <div><span>Entry</span><strong>$30</strong></div>
+          <div><span>Prize</span><strong>$120</strong></div>
+        </div>
+        <p class="small version-line">MauMatch v1.3.3</p>
       </article>
-      <article class="card">
-        <h2>Tournament Picks</h2>
-        <div id="tournamentPicksMini"></div>
+
+      <article class="card accent impact-card">
+        <div class="section-title compact-title">
+          <div>
+            <p class="eyebrow">Today</p>
+            <h2>Impact</h2>
+          </div>
+          <span class="pill">Smart preview</span>
+        </div>
+        <div id="impactList" class="impact-list compact-impact"></div>
+      </article>
+
+      <article class="card matches-dashboard-card">
+        <div class="section-title compact-title">
+          <div>
+            <p class="eyebrow">Schedule</p>
+            <h2>Key Matches</h2>
+          </div>
+          <a href="matches.html">All matches</a>
+        </div>
+        <div id="matchCards" class="dashboard-match-list"></div>
+      </article>
+
+      <article class="card picks-dashboard-card">
+        <div class="section-title compact-title">
+          <div>
+            <p class="eyebrow">Locked Picks</p>
+            <h2>Tournament Picks</h2>
+          </div>
+          <a href="players.html">Players</a>
+        </div>
+        <div id="tournamentPicksMini" class="compact-picks"></div>
       </article>
     </section>
   </main>
