@@ -31,8 +31,11 @@ function renderGroups(){
   const el = $('groupsGrid'); if(!el) return;
   el.innerHTML = Object.keys(POOL.officialGroups).map(g=>{
     const official=POOL.officialGroups[g];
+    const officialBlock = official.winner === 'TBD' && official.runnerUp === 'TBD'
+      ? `<p class="muted">Official results pending</p>`
+      : `<div class="official-label">Official qualifiers</div><div class="official-summary"><span class="qualifier-badge winner">🥇 ${official.winner}</span><span class="qualifier-badge runner">🥈 ${official.runnerUp}</span></div>`;
     const rows = POOL.players.map(p=>{ const pick=POOL.groupPicks[p][g]; const w = official.winner !== 'TBD' && pick[0]===official.winner; const r = official.runnerUp !== 'TBD' && pick[1]===official.runnerUp; return `<tr><td>${p}</td><td>${pick[0]} <span class="${w?'ok':'bad'}">${official.winner==='TBD'?'':' '+(w?'✓':'×')}</span></td><td>${pick[1]} <span class="${r?'ok':'bad'}">${official.runnerUp==='TBD'?'':' '+(r?'✓':'×')}</span></td></tr>`}).join('');
-    return `<article class="card group-card"><h2>Group ${g}</h2><p class="muted">Official: ${official.winner} / ${official.runnerUp}</p><table><thead><tr><th>Player</th><th>Winner</th><th>Runner-up</th></tr></thead><tbody>${rows}</tbody></table></article>`;
+    return `<article class="card group-card"><h2>Group ${g}</h2>${officialBlock}<table><thead><tr><th>Player</th><th>Winner</th><th>Runner-up</th></tr></thead><tbody>${rows}</tbody></table></article>`;
   }).join('');
 }
 function renderPlayers(){
