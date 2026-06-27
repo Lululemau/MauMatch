@@ -40,3 +40,98 @@ button.secondary{background:#334155;color:#fff}.success{background:rgba(34,197,9
 .stage-detail{font-size:.82rem;color:var(--muted);line-height:1.35;margin-top:2px}
 @media(max-width:850px){.stage-timeline{grid-template-columns:repeat(2,minmax(0,1fr));}.stage-step{grid-template-columns:1fr}.stage-code{justify-content:flex-start;padding:6px 10px}}
 @media(max-width:520px){.stage-timeline{grid-template-columns:1fr}}
+
+/* V1.3.1 dashboard layout cleanup */
+.hero-grid{
+  grid-template-columns:minmax(260px,1.25fr) minmax(360px,1.35fr) minmax(240px,.9fr);
+  align-items:start;
+}
+.hero-grid > .card{
+  min-height:auto;
+}
+.progress-card{
+  padding:20px;
+}
+.progress-card .muted{
+  margin:10px 0 8px;
+}
+.stage-timeline{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.stage-step{
+  grid-template-columns:42px 1fr;
+  padding:8px 9px;
+  min-height:62px;
+}
+.stage-title{
+  font-size:.95rem;
+}
+.stage-detail{
+  font-size:.78rem;
+}
+.stage-code{
+  min-height:28px;
+  font-size:.72rem;
+}
+@media(max-width:1050px){
+  .hero-grid{grid-template-columns:1fr 1fr;}
+  .hero-grid .progress-card{grid-column:1 / -1;}
+  .stage-timeline{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:720px){
+  .hero-grid{grid-template-columns:1fr;}
+  .stage-timeline{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:520px){
+  .stage-timeline{grid-template-columns:1fr;}
+}
+
+
+/* V1.3.2 dashboard optimization */
+.dashboard-hero{
+  grid-template-columns:minmax(360px,1.35fr) minmax(360px,1.15fr) minmax(220px,.75fr);
+}
+.leaderboard-card{
+  min-height:0;
+}
+.leaderboard-card .section-title{
+  gap:14px;
+  align-items:flex-start;
+}
+.compact-note{
+  margin:8px 0 12px;
+}
+.leader-row{
+  padding:10px 0;
+}
+.leader-row.top-leader{
+  background:linear-gradient(135deg,rgba(255,209,102,.18),rgba(77,171,247,.10));
+  border:1px solid rgba(255,209,102,.35);
+  border-radius:16px;
+  padding:12px 14px;
+  margin:4px 0 8px;
+}
+.leader-chip{
+  display:inline-block;
+  margin-left:8px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(255,209,102,.18);
+  color:var(--gold);
+  border:1px solid rgba(255,209,102,.4);
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-weight:900;
+}
+.dashboard-main{
+  margin-top:18px;
+}
+@media(max-width:1050px){
+  .dashboard-hero{grid-template-columns:1fr 1fr;}
+  .dashboard-hero .leaderboard-card{grid-column:1 / -1;}
+}
+@media(max-width:720px){
+  .dashboard-hero{grid-template-columns:1fr;}
+}
