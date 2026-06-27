@@ -6,3 +6,23 @@
 button{border:0;border-radius:999px;background:#22c55e;color:#061321;font-weight:800;padding:12px 16px;cursor:pointer}
 button.secondary{background:#334155;color:#fff}.success{background:rgba(34,197,94,.18);color:#86efac}.scoreline{font-size:1.1rem;font-weight:800;margin:10px 0}
 @media(max-width:720px){.admin-row,.match-edit{grid-template-columns:1fr}.admin-row strong{margin-top:8px}}
+
+
+/* V1.2 UI polish */
+.card.match-card{
+  display:block;
+  padding:22px 24px;
+  margin-bottom:16px;
+  border-radius:24px;
+}
+.match-card > div{width:100%;}
+.match-card .pill{margin-bottom:10px;}
+.match-card .scoreline{margin:14px 0 12px;line-height:1.35;}
+.match-card p{margin:8px 0 0;}
+.match-title{font-weight:900;font-size:1.05rem;line-height:1.35;}
+.official-summary{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 14px;}
+.qualifier-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:.84rem;font-weight:900;border:1px solid rgba(255,255,255,.14)}
+.qualifier-badge.winner{background:rgba(66,211,146,.18);color:#9ff3c5;border-color:rgba(66,211,146,.45)}
+.qualifier-badge.runner{background:rgba(77,171,247,.18);color:#b9ddff;border-color:rgba(77,171,247,.45)}
+.group-card .official-label{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-top:10px;margin-bottom:4px;}
+@media(max-width:720px){.card.match-card{padding:18px}.official-summary{gap:6px}.qualifier-badge{font-size:.78rem}}
