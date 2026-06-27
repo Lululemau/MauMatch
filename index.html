@@ -35,10 +35,11 @@
         <h2 id="dashboardLeader">Calculating...</h2>
         <p class="muted">Scores are calculated from entered official group results.</p>
       </article>
-      <article class="card">
+      <article class="card progress-card">
         <p class="eyebrow">Tournament Progress</p>
-        <div class="progress"><span style="width:42%"></span></div>
-        <p class="muted">Group stage data loaded. Knockout scoring comes next.</p>
+        <div class="progress"><span id="progressFill" style="width:0%"></span></div>
+        <p id="progressLabel" class="muted">Loading tournament timeline...</p>
+        <div id="stageTimeline" class="stage-timeline" aria-label="Tournament stage timeline"></div>
       </article>
       <article class="card">
         <p class="eyebrow">Players Paid</p>
