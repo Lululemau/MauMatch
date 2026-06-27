@@ -11,3 +11,9 @@ function calculateScores(){
   }).sort((a,b)=>b.total-a.total || a.player.localeCompare(b.player));
 }
 function medal(i){ return ["🥇","🥈","🥉"][i] || `${i+1}`; }
+function matchWinner(match){
+  if(match.status !== "Final" || match.scoreA === null || match.scoreB === null) return "TBD";
+  if(match.scoreA > match.scoreB) return match.teamA;
+  if(match.scoreB > match.scoreA) return match.teamB;
+  return "Draw";
+}

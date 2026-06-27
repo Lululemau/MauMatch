@@ -1,4 +1,4 @@
-const POOL = {
+const DEFAULT_POOL = {
   prizePool: 120,
   entryFee: 30,
   players: ["Mauricio", "Laura", "Lisa", "Natalia"],
@@ -30,9 +30,31 @@ const POOL = {
     Natalia: { champion:"Spain", runnerUp:"England", goldenBoot:"", darkHorse:"Senegal", finalScore:"" }
   },
   matches: [
-    { date:"Jun 27", title:"Panama vs England", insight:"England affects Mauricio and Natalia runner-up hopes. Panama is Laura's Dark Horse." },
-    { date:"Jun 27", title:"Colombia vs Portugal", insight:"Group K impacts Mauricio/Laura vs Lisa/Natalia picks." },
-    { date:"Jun 29", title:"Brazil vs Japan", insight:"Brazil is a common group winner; Japan affects Group F runner-up picks." },
-    { date:"Jun 30", title:"France vs Sweden", insight:"Lisa's Champion France faces her Dark Horse Sweden in a high-impact storyline." }
+    { id:"pan-eng", date:"Jun 27", teamA:"Panama", teamB:"England", scoreA:null, scoreB:null, status:"Scheduled", insight:"England affects Mauricio and Natalia runner-up hopes. Panama is Laura's Dark Horse." },
+    { id:"cro-gha", date:"Jun 27", teamA:"Croatia", teamB:"Ghana", scoreA:null, scoreB:null, status:"Scheduled", insight:"Group L impacts England/Croatia/Panama predictions." },
+    { id:"col-por", date:"Jun 27", teamA:"Colombia", teamB:"Portugal", scoreA:null, scoreB:null, status:"Scheduled", insight:"Group K impacts Mauricio/Laura vs Lisa/Natalia picks." },
+    { id:"jor-arg", date:"Jun 27", teamA:"Jordan", teamB:"Argentina", scoreA:null, scoreB:null, status:"Scheduled", insight:"Argentina matters to Laura as runner-up and to all players' Group J logic." },
+    { id:"bra-jpn", date:"Jun 29", teamA:"Brazil", teamB:"Japan", scoreA:null, scoreB:null, status:"Scheduled", insight:"Brazil is a common group winner; Japan affects Group F runner-up picks." },
+    { id:"fra-swe", date:"Jun 30", teamA:"France", teamB:"Sweden", scoreA:null, scoreB:null, status:"Scheduled", insight:"Lisa's Champion France faces her Dark Horse Sweden in a high-impact storyline." }
   ]
 };
+
+function loadPool(){
+  try {
+    const saved = localStorage.getItem("mauMatchPool");
+    return saved ? JSON.parse(saved) : structuredClone(DEFAULT_POOL);
+  } catch (e) {
+    return JSON.parse(JSON.stringify(DEFAULT_POOL));
+  }
+}
+
+function savePool(pool){
+  localStorage.setItem("mauMatchPool", JSON.stringify(pool));
+}
+
+function resetPool(){
+  localStorage.removeItem("mauMatchPool");
+  location.reload();
+}
+
+let POOL = loadPool();
