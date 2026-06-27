@@ -26,3 +26,17 @@ button.secondary{background:#334155;color:#fff}.success{background:rgba(34,197,9
 .qualifier-badge.runner{background:rgba(77,171,247,.18);color:#b9ddff;border-color:rgba(77,171,247,.45)}
 .group-card .official-label{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-top:10px;margin-bottom:4px;}
 @media(max-width:720px){.card.match-card{padding:18px}.official-summary{gap:6px}.qualifier-badge{font-size:.78rem}}
+
+
+/* V1.3 dashboard timeline */
+.progress-card .muted{margin-bottom:12px;}
+.stage-timeline{display:grid;gap:8px;margin-top:14px;}
+.stage-step{display:grid;grid-template-columns:46px 1fr;gap:10px;align-items:start;padding:9px 10px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.045)}
+.stage-code{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border-radius:999px;font-weight:900;font-size:.78rem;background:rgba(255,255,255,.08);color:var(--muted);border:1px solid var(--border)}
+.stage-step.done .stage-code{background:rgba(66,211,146,.18);color:#9ff3c5;border-color:rgba(66,211,146,.45)}
+.stage-step.active .stage-code{background:rgba(255,209,102,.18);color:var(--gold);border-color:rgba(255,209,102,.5)}
+.stage-step.future .stage-code{background:rgba(77,171,247,.12);color:#b9ddff;border-color:rgba(77,171,247,.28)}
+.stage-title{font-weight:900;line-height:1.25}
+.stage-detail{font-size:.82rem;color:var(--muted);line-height:1.35;margin-top:2px}
+@media(max-width:850px){.stage-timeline{grid-template-columns:repeat(2,minmax(0,1fr));}.stage-step{grid-template-columns:1fr}.stage-code{justify-content:flex-start;padding:6px 10px}}
+@media(max-width:520px){.stage-timeline{grid-template-columns:1fr}}
