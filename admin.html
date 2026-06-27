@@ -1,5 +1,29 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MauMatch Admin</title><link rel="stylesheet" href="css/styles.css"></head><body>
-<header class="page-header"><h1>⚙️ Admin</h1><p>V1 is read-only. Manual result entry comes in V1.1.</p></header>
+<header class="page-header"><h1>⚙️ Admin</h1><p>Enter group results and match scores. V1.1 stores changes in your browser and can export a new data.js file for GitHub.</p></header>
 <nav class="nav"><a href="index.html">Dashboard</a><a href="leaderboard.html">Leaderboard</a><a href="groups.html">Groups</a><a href="players.html">Players</a><a href="matches.html">Matches</a><a class="active" href="admin.html">Admin</a></nav>
-<main class="container"><section class="card"><h2>Admin Roadmap</h2><ul class="feature-list"><li>Enter official scores</li><li>Lock knockout picks</li><li>Recalculate points</li><li>Export leaderboard</li></ul><p class="muted">For now, official group results are stored in <code>js/data.js</code>.</p></section></main>
+<main class="container">
+  <section class="card"><h2>Match Scores</h2><p class="muted">Set status to Final after entering the score.</p><div id="adminMatches"></div></section>
+  <section class="card"><h2>Official Group Results</h2><p class="muted">Use exact team names. Example: Group K winner = Portugal, runner-up = Colombia.</p><div id="adminGroups"></div></section>
+  <section class="card accent"><h2>Save & Publish</h2><p id="adminMessage" class="muted">Save keeps changes in this browser only. Export creates a new js/data.js file you can upload to GitHub so everyone sees the update.</p><div class="button-row"><button onclick="saveAdminChanges()">Save in Browser</button><button onclick="exportDataJS()">Export data.js</button><button class="secondary" onclick="resetPool()">Reset Local Changes</button></div></section>
+</main>
+<template id="dataHelpers">function loadPool(){
+  try {
+    const saved = localStorage.getItem("mauMatchPool");
+    return saved ? JSON.parse(saved) : structuredClone(DEFAULT_POOL);
+  } catch (e) {
+    return JSON.parse(JSON.stringify(DEFAULT_POOL));
+  }
+}
+
+function savePool(pool){
+  localStorage.setItem("mauMatchPool", JSON.stringify(pool));
+}
+
+function resetPool(){
+  localStorage.removeItem("mauMatchPool");
+  location.reload();
+}
+
+let POOL = loadPool();
+</template>
 <script src="js/data.js"></script><script src="js/scoring.js"></script><script src="js/app.js"></script></body></html>
