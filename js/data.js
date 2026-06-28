@@ -64,16 +64,16 @@ var DEFAULT_POOL = {
       "runnerUp": "Norway"
     },
     "J": {
-      "winner": "TBD",
-      "runnerUp": "TBD"
+      "winner": "Argentina",
+      "runnerUp": "Austria"
     },
     "K": {
-      "winner": "TBD",
-      "runnerUp": "TBD"
+      "winner": "Colombia",
+      "runnerUp": "Portugal"
     },
     "L": {
-      "winner": "TBD",
-      "runnerUp": "TBD"
+      "winner": "England",
+      "runnerUp": "Croatia"
     }
   },
   "groupPicks": {
@@ -314,40 +314,70 @@ var DEFAULT_POOL = {
       "date": "Jun 27",
       "teamA": "Panama",
       "teamB": "England",
-      "scoreA": null,
-      "scoreB": null,
-      "status": "Scheduled",
-      "insight": "England affects Mauricio and Natalia runner-up hopes. Panama is Laura's Dark Horse."
+      "scoreA": 0,
+      "scoreB": 2,
+      "status": "Final",
+      "insight": "England topped Group L. Mauricio and Natalia keep England runner-up/champion storylines alive; Laura's Panama dark horse is eliminated."
     },
     {
       "id": "cro-gha",
       "date": "Jun 27",
       "teamA": "Croatia",
       "teamB": "Ghana",
-      "scoreA": null,
-      "scoreB": null,
-      "status": "Scheduled",
-      "insight": "Group L impacts England/Croatia/Panama predictions."
+      "scoreA": 2,
+      "scoreB": 1,
+      "status": "Final",
+      "insight": "Croatia finished runner-up in Group L and Ghana advanced as a third-place team."
     },
     {
       "id": "col-por",
       "date": "Jun 27",
       "teamA": "Colombia",
       "teamB": "Portugal",
-      "scoreA": null,
-      "scoreB": null,
-      "status": "Scheduled",
-      "insight": "Group K impacts Mauricio/Laura vs Lisa/Natalia picks."
+      "scoreA": 0,
+      "scoreB": 0,
+      "status": "Final",
+      "insight": "Colombia won Group K and Portugal finished runner-up. Mauricio and Laura got Colombia/Portugal exactly right."
+    },
+    {
+      "id": "cod-uzb",
+      "date": "Jun 27",
+      "teamA": "DR Congo",
+      "teamB": "Uzbekistan",
+      "scoreA": 3,
+      "scoreB": 1,
+      "status": "Final",
+      "insight": "DR Congo advanced as a third-place team after a comeback win."
     },
     {
       "id": "jor-arg",
       "date": "Jun 27",
       "teamA": "Jordan",
       "teamB": "Argentina",
+      "scoreA": 1,
+      "scoreB": 3,
+      "status": "Final",
+      "insight": "Argentina swept Group J; everyone picked Argentina as Group J winner."
+    },
+    {
+      "id": "alg-aut",
+      "date": "Jun 27",
+      "teamA": "Algeria",
+      "teamB": "Austria",
+      "scoreA": 3,
+      "scoreB": 3,
+      "status": "Final",
+      "insight": "Austria finished runner-up in Group J; Algeria advanced as a third-place team."
+    },
+    {
+      "id": "rsa-can",
+      "date": "Jun 28",
+      "teamA": "South Africa",
+      "teamB": "Canada",
       "scoreA": null,
       "scoreB": null,
       "status": "Scheduled",
-      "insight": "Argentina matters to Laura as runner-up and to all players' Group J logic."
+      "insight": "Round of 32 begins. South Africa's run matters because nobody picked them as Group A runner-up."
     },
     {
       "id": "bra-jpn",
@@ -357,7 +387,37 @@ var DEFAULT_POOL = {
       "scoreA": null,
       "scoreB": null,
       "status": "Scheduled",
-      "insight": "Brazil is a common group winner; Japan affects Group F runner-up picks."
+      "insight": "Brazil was a common group-winner pick; Japan was a common runner-up pick in Group F."
+    },
+    {
+      "id": "ger-par",
+      "date": "Jun 29",
+      "teamA": "Germany",
+      "teamB": "Paraguay",
+      "scoreA": null,
+      "scoreB": null,
+      "status": "Scheduled",
+      "insight": "Germany is a common group-winner pick; Paraguay affects Mauricio's Group D pick story."
+    },
+    {
+      "id": "ned-mar",
+      "date": "Jun 29",
+      "teamA": "Netherlands",
+      "teamB": "Morocco",
+      "scoreA": null,
+      "scoreB": null,
+      "status": "Scheduled",
+      "insight": "Netherlands and Morocco were popular family picks, so this knockout match has high pool interest."
+    },
+    {
+      "id": "civ-nor",
+      "date": "Jun 30",
+      "teamA": "Ivory Coast",
+      "teamB": "Norway",
+      "scoreA": null,
+      "scoreB": null,
+      "status": "Scheduled",
+      "insight": "Norway is important because Mauricio, Lisa and Natalia picked Norway as Group I runner-up."
     },
     {
       "id": "fra-swe",
@@ -373,7 +433,7 @@ var DEFAULT_POOL = {
 };
 
 
-function mauMatchClone(obj){
+(obj){
   return JSON.parse(JSON.stringify(obj));
 }
 
