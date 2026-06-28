@@ -1,4 +1,4 @@
-const DEFAULT_POOL = {
+var DEFAULT_POOL = {
   "prizePool": 120,
   "entryFee": 30,
   "players": [
@@ -372,3 +372,34 @@ const DEFAULT_POOL = {
   ]
 };
 
+
+function mauMatchClone(obj){
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function loadPool(){
+  try {
+    const saved = localStorage.getItem("mauMatchPool");
+    const parsed = saved ? JSON.parse(saved) : null;
+    if (parsed && Array.isArray(parsed.players) && parsed.players.length) return parsed;
+  } catch (e) {
+    console.warn("MauMatch local save could not be read; using default data.", e);
+  }
+  return mauMatchClone(DEFAULT_POOL);
+}
+
+function savePool(pool){
+  localStorage.setItem("mauMatchPool", JSON.stringify(pool));
+}
+
+function resetPool(){
+  localStorage.removeItem("mauMatchPool");
+  location.reload();
+}
+
+var POOL = loadPool();
+window.DEFAULT_POOL = DEFAULT_POOL;
+window.POOL = POOL;
+window.loadPool = loadPool;
+window.savePool = savePool;
+window.resetPool = resetPool;

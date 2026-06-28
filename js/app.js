@@ -2,7 +2,13 @@
   const $ = id => document.getElementById(id);
 
   function safePool(){
-    if (typeof POOL !== 'undefined' && POOL && Array.isArray(POOL.players)) return POOL;
+    if (typeof POOL !== 'undefined' && POOL && Array.isArray(POOL.players) && POOL.players.length) return POOL;
+    if (window.POOL && Array.isArray(window.POOL.players) && window.POOL.players.length) return window.POOL;
+    try {
+      const saved = localStorage.getItem('mauMatchPool');
+      if (saved) { const parsed = JSON.parse(saved); if (parsed && Array.isArray(parsed.players) && parsed.players.length) return parsed; }
+    } catch(e) {}
+    if (window.DEFAULT_POOL && Array.isArray(window.DEFAULT_POOL.players)) return JSON.parse(JSON.stringify(window.DEFAULT_POOL));
     return { players: [], officialGroups: {}, groupPicks: {}, tournamentPicks: {}, matches: [], scoring: { groupWinner: 3, groupRunnerUp: 2 } };
   }
 
@@ -166,6 +172,7 @@
     try{
       if (typeof savePool === 'function') savePool(pool);
       window.POOL = pool;
+      try { POOL = pool; } catch(e) {}
       const msg=$('adminMessage'); if(msg) msg.innerHTML='✅ Saved in this browser. Use <strong>Export data.js</strong> to publish changes for everyone.';
       renderAll(false);
     } catch(e){
@@ -177,7 +184,8 @@
   function exportDataJS(){
     const pool = safePool();
     const helper = `function loadPool(){\n  try {\n    const saved = localStorage.getItem("mauMatchPool");\n    return saved ? JSON.parse(saved) : structuredClone(DEFAULT_POOL);\n  } catch (e) {\n    return JSON.parse(JSON.stringify(DEFAULT_POOL));\n  }\n}\n\nfunction savePool(pool){\n  localStorage.setItem("mauMatchPool", JSON.stringify(pool));\n}\n\nfunction resetPool(){\n  localStorage.removeItem("mauMatchPool");\n  location.reload();\n}\n\nlet POOL = loadPool();`;
-    const content = `const DEFAULT_POOL = ${JSON.stringify(pool,null,2)};\n\n${helper}`;
+    const fixedHelper = helper.replace('let POOL = loadPool();', 'var POOL = loadPool();\nwindow.DEFAULT_POOL = DEFAULT_POOL;\nwindow.POOL = POOL;');
+    const content = `var DEFAULT_POOL = ${JSON.stringify(pool,null,2)};\n\n${fixedHelper}`;
     const blob = new Blob([content], {type:'text/javascript'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
